@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <%- include("./layouts/head-imports.ejs") %>
+        <script src="/script.js" defer></script>
+        <script src="/homeScripts.js" defer></script>
+    </head>
+    <body class="column">
+        <%- include("./layouts/nav.ejs") %>
+            <div class="home-nav main-gradient">
+                <h1>ISSUES</h1>
+                <button class="btn-highlight" id="open-project-modal">Submit Issue<i class="fas fa-caret-down"></i></button>
+            </div>
+        <div class="main column">
+            <div class="space">
+                <div>
+                    <p>TOTAL ISSUES</p>
+                    <strong><p><%= tickets.length %></p></strong>
+                </div>
+                <div class="row center">
+                    <form id="search-form"> <input type="text" placeholder="Search" name="query">
+                        <button class="btn-empty"><i class="fas fa-search"></i></button>
+                    </form>
+                    <div class="select">
+                        <select id="sort-project">
+                            <option>Date Created</option>
+                            <option>Date Modified</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="issue-list">
+                <% for (const issue of tickets) { %>
+                    <div class="issue column">
+                        <div class="row">
+                            <h2><%= issue.name %></h2>
+                            <span class="c-box"><%= issue.status %></span>
+                            <span class="c-box"><span><%= issue.severity %></span></span>
+                            <span style="margin-left: auto"><%= issue.created_at %></span>
+                        </div>
+                        <p><%= issue.description.substr(0, 500) + " ..." %></p>
+                        <div>
+                            <h4> Submitted By: <%= issue.first_name %> </%=><%= issue.last_name %></h4>
+                            <div class="space">
+                                <h4> Assigned To: <%= issue.as_last_name %></h4>
+                                <a class="btn-highlight" href="/p/1/i/<%= issue.id %>">VIEW</a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        <div class="modal column center create-project">
+            <div>
+                <div class="space center">
+                    <h3>New Issue</h3>
+                    <button id="close-modal" class="btn-rounded"><i class="fas fa-times"></i></button>
+                </div>
+
+                <form class="column" action="/<%= prjid %>/submit-issue" method="POST">
+                    <input type="text" name="title" placeholder="Issue Title">
+                    <label for="severity">Severity of Issue</label>
+                    <select name="severity">
+                        <option value="1">None</option>
+                        <option value="2">Low</option>
+                        <option value="3">Medium</option>
+                        <option value="4">High</option>
+                    </select>
+                    <input type="text" name="asignee" placeholder="Assign To">
+                    <textarea name="desc" placeholder="Include all the information someone would need to solve your issue"></textarea>
+                    <input class="btn-highlight" type="submit" value="Submit Issue">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

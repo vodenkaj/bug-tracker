@@ -1,0 +1,401 @@
+@charset "UTF-8";
+/* Sass variables */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 100% Lato, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+select,
+form {
+  padding: 0;
+  margin: 0;
+}
+
+/* Generic templates */
+.row {
+  display: flex;
+  justify-content: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.space {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Layouts */
+.navigation {
+  width: 100%;
+  color: #F5F5F5;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  padding: 1rem 10%;
+}
+
+.navigation > div {
+  margin-left: auto;
+  text-align: right;
+}
+
+.navigation > div > a {
+  margin: 0 10px;
+}
+
+.navigation button {
+  color: white;
+}
+
+.main-gradient {
+  background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+}
+
+.main {
+  width: 100%;
+  padding: 0 10%;
+  color: #023047;
+  background: #F5F5F5;
+  flex: 1;
+}
+
+/* Effects */
+.shadow-line {
+  box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.bottom-line {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.highlight {
+  color: #3a47d5;
+}
+
+/* Buttons */
+.btn-rounded-blue-invert,
+.btn-rounded-blue {
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  background: #219EBC;
+  cursor: pointer;
+}
+
+.btn-rounded-blue-invert {
+  border: solid;
+  background: #3a47d5;
+  color: white;
+  border: none;
+}
+
+.issue-head button,
+.create-project form input[type=text],
+.btn-highlight,
+.btn-highlight:focus,
+.btn-colored-line,
+.btn-colored-line:focus,
+.btn-empty {
+  border: none;
+  padding: 0;
+  outline: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.btn-colored-line {
+  border-bottom: 0.1rem solid #3a47d5;
+}
+
+.btn-colored-line:focus {
+  border-bottom: 0.1rem solid #00d2ff;
+}
+
+.btn-highlight {
+  background: #ff006e;
+  color: white;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.btn-highlight i {
+  margin-left: 10px;
+}
+
+.btn-rounded {
+  border-radius: 100%;
+  background: white;
+  color: gray;
+  width: 25px;
+  height: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Modals */
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(33, 158, 188, 0.8);
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.create-project h3 {
+  margin: 0;
+  color: white;
+}
+
+.create-project form > input[type=text] {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: white;
+  border-radius: 1rem;
+  padding: 10px;
+}
+
+.create-project form > * {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+/* Auth page */
+.auth {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  text-align: center;
+  background: #F5F5F5;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.auth > input {
+  margin: 1rem;
+  padding: 0.2rem;
+}
+
+.auth > input[type=submit] {
+  padding: 1rem;
+}
+
+/* Home page */
+.home-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 10%;
+}
+
+.home-nav h1 {
+  margin: 0;
+  color: white;
+}
+
+.home-panel {
+  padding: 1rem 0;
+}
+
+.home-stats {
+  font-size: 14px;
+}
+
+.home-stats p {
+  margin: 0;
+}
+
+.home-stats div {
+  margin-right: 1rem;
+}
+
+.btn-panel > * {
+  margin-left: 20px;
+}
+
+#search-form {
+  border-radius: 1rem;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.5em 0.5em;
+  white-space: nowrap;
+  height: max-content;
+}
+
+#search-form input,
+#search-form input:focus {
+  border: none;
+  outline: none;
+}
+
+#sort-project {
+  appearance: none;
+  outline: 0;
+  box-shadow: 0;
+  border-width: 1px;
+  border-radius: 1rem;
+  border-color: rgba(0, 0, 0, 0.2);
+  flex: 1;
+  padding: 0 0.5em;
+  color: black;
+  cursor: pointer;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  width: 10em;
+  height: 2.5rem;
+  line-height: 2.5;
+  overflow: hidden;
+  border-radius: 0.25em;
+}
+
+.select::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  cursor: pointer;
+  pointer-events: none;
+  color: black;
+  border: 1px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+}
+
+#project-list {
+  height: 70%;
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: baseline;
+}
+
+.project-record {
+  border-radius: 10px;
+  padding: 2rem;
+  background: white;
+  margin: 1rem 1rem 0 0;
+  flex: 1;
+  height: 200px;
+  max-width: 250px;
+  min-width: 200px;
+}
+
+.project-record > * {
+  margin: 0;
+}
+
+.project-record p {
+  font-size: 12px;
+}
+
+.project-record span {
+  float: right;
+}
+
+.project-record h3 {
+  margin-bottom: 10px;
+}
+
+.project-record .btn-highlight {
+  margin-top: 10px;
+}
+
+.project-record a {
+  font-size: medium;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Issues page */
+.issue-head {
+  padding: 0.5em;
+}
+
+.issue-head button {
+  flex: 1;
+}
+
+.issue-list {
+  width: 100%;
+  flex: 1;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.issue-list:-webkit-scrollbar {
+  display: none;
+}
+
+.issue {
+  border-radius: 0.2em;
+  background: white;
+  padding: 1em;
+}
+
+.issue > div .fa-circle {
+  font-size: 5px;
+  text-align: center;
+  margin: auto 10px;
+}
+
+.issue > * {
+  flex: 1;
+}
+
+.issue div h4 {
+  margin: 0;
+}
+
+.c-box {
+  border-radius: 0.2em;
+  background: green;
+  padding: 0.2em;
+  margin: auto 10px;
+  margin-right: 5px;
+}
+
+/* Media querys */
+@media only screen and (max-width: 600px) {
+  .project-record {
+    max-width: unset;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

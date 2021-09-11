@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <%- include("./layouts/head-imports.ejs") %>
+        <script src="/homeScripts.js" defer></script>
+        <script>const projects = <%- JSON.stringify(projects) %>;</script>
+    </head>
+    <body class="column">
+        <%- include("./layouts/nav.ejs") %>
+        <div class="home-nav main-gradient">
+            <h1>Home</h1>
+            <button class="btn-highlight" id="open-project-modal">NEW PROJECT<i class="fas fa-caret-down"></i></button>
+        </div>
+        <div class="main">
+            <div class="home-panel space bottom-line">
+              <div class="row home-stats">
+                <div>
+                    <p>TOTAL PROJECTS</p>
+                    <strong><p><%= projects.length %></p></strong>
+                </div>
+                <div>
+                    <p>TOTAL ISSUES</p>
+                    <strong><p><%= ticketCounts %></p></strong>
+                </div>
+              </div>
+              <div class="row center btn-panel">
+                <form id="search-form">
+                    <input type="text" placeholder="Search" name="query">
+                    <button class="btn-empty"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="select">
+                    <select id="sort-project">
+                        <option>Date Created</option>
+                        <option>Date Modified</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+            <div id="project-list">
+                <% for (const project of projects) { %>
+                   <div class="project-record column">
+                        <h3><%= project.name %></h3>
+                        <p class="bottom-line">CREATED <span><%= project.created_at %></span></p>
+                        <p class="bottom-line">MODIFIED <span>Sep 30, 2021</span></p>
+                        <p class="bottom-line">TOTAL ISSUES <span>102</span></p>
+                        <a class="btn-highlight" href="/projects/<%= project.id %>">VIEW</a>
+                   </div>
+                <% } %>
+            </div>
+        </div>
+        <div class="modal column center create-project">
+            <div>
+                <div class="space center">
+                    <h3>New Project</h3>
+                    <button id="close-modal" class="btn-rounded"><i class="fas fa-times"></i></button>
+                </div>
+
+                <form class="column" action="/create-project" method="POST">
+                    <input type="text" name="pname" placeholder="Project Name">
+                    <input class="btn-highlight" type="submit" value="Create new project">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
